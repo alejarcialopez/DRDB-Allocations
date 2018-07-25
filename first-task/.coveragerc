@@ -1,0 +1,10 @@
+[run]
+omit=
+	.tox/*
+	setup.py
+	manage.py
+	*/test/*
+	*/tests/*
+	first_task_project/settings/*
+	first_task_project/wsgi.py
+	.tox/

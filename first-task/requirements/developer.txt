@@ -1,0 +1,7 @@
+# Install the main set of requirements
+-r ./base.txt
+
+# Additional requirements useful for developers of first-task
+
+# Django debugging
+django-debug-toolbar

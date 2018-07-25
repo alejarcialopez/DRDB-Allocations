@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'first_task/style.css' %}" />
+  <h2>DRBD Allocations</h2>
+  <table style="width:100%">
+    <tr>
+      <th>Name</th>
+      <th>Device</th>
+      <th>Port</th>
+    </tr>
+    {% for allocation in allocations %}
+      <tr>
+        {% for key, value in allocation.items %}
+          <td>{{ value }}</td>
+        {% endfor %}
+      </tr>
+    {% endfor %}
+  </table>
+</body>
+</html>

@@ -1,0 +1,23 @@
+# docker-compose file for local development and testing with container image.
+version: '3.2'
+
+services:
+  # PostgreSQL database for first-task
+  first-task-db:
+    image: postgres
+    env_file:
+      - base.env
+    volumes:
+      - first-task-postgres-data-local:/var/lib/postgresql/data
+      - first-task-postgres-backup-local:/backups
+
+  # Debug SMTP provider
+  mailhog:
+    image: mailhog/mailhog
+    ports:
+      - "8025:8025"
+
+volumes:
+  # Persistent volumes for postgres database data
+  first-task-postgres-data-local:
+  first-task-postgres-backup-local:
