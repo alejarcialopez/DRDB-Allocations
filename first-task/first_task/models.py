@@ -9,20 +9,16 @@ class DRBDAllocation(models.Model):
     port = models.PositiveIntegerField()
 
     @classmethod
-    def create(cls, name=None, device=None, port=None):
+    def create(cls, o, device=None, port=None, name=None):
         port_list = []
         device_list = []
         name_list = []
-
-        with open("/Users/aa2012/Documents/DRDB-Allocations/first-task/first_task/mws_allocations.txt",
-                  'r') as file_allocation:
-            content = csv.DictReader(file_allocation, delimiter=' ')
-            for element in content:
-                if '-' in element['shortname']:
-                    device_list.append(int(element['device_number']))
-                    port_list.append(int(element['port']))
-                    name_list.append(int(element['shortname'].split('-')[2]))
-
+        objects = o.objects.all()
+        for object in objects:
+            port_list.append(object.port)
+            device_list.append(object.device)
+            if len(object.name.split('-')) == 3:
+                name_list.append(int(object.name.split('-')[2]))
         port_list = sorted(port_list)
         device_list = sorted(device_list)
         name_list = sorted(name_list)
@@ -44,5 +40,4 @@ class DRBDAllocation(models.Model):
 
     def __str__(self):
         return str(self.name)
-
 
